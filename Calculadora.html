@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Calculadora.css" />
+    <title>Calculadora</title>
+  </head>
+  <body>
+    <main>
+      <!-- para criar uma tabela, colocamos o table, que define que vamos fazer tabela, depois o caption onde fica o titulo da nossa tabela e th que serao os nosso headers e tr que definem cada linha da nossa tabela e por ultimo o td que serao os dados colocados em formato de linha e o tds ficam dentro dos trs.-->
+      <div class="container">
+        <h1>Calculadora</h1>
+        <div class="tela">
+          <p id="expr"></p>
+          <p id="res"></p>
+        </div>
+        <table id="tabela">
+          <tr>
+            <td class="sinais">X</td>
+            <td class="sinais">AC</td>
+            <td class="sinais">%</td>
+            <td class="sinais">/</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td class="sinais">*</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td class="sinais">-</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td class="sinais">+</td>
+          </tr>
+          <tr>
+            <td>+/-</td>
+            <td>0</td>
+            <td>,</td>
+            <td class="sinais">=</td>
+          </tr>
+        </table>
+      </div>
+    </main>
+    <script>
+      let tabela = document.getElementById("tabela");
+      let expr = document.getElementById("expr");
+      let res = document.getElementById("res");
+      let expressao = "";
+      let ver = false
+
+      //primeiro vamos pegar os dados que sao filho de linhas que as linhas por sua vez sao filho da tabela
+
+      let linhas = tabela.children; // agora linhas contem trs que sao os filhos da tabela agora queremos o filho das linhas que sao os dado(td)
+      for (let linha of linhas) {
+        let botoes = linha.children;
+        for (let botao of botoes) {
+          botao.addEventListener("click", clique)
+        }
+      }
+      
+      function clique(evento){
+        let btnclicado = evento.target.innerText
+        expressao += btnclicado
+        if(btnclicado == "X" || btnclicado == "AC" || btnclicado == "="){
+          expressao = expressao.slice(0 , -1)
+        }
+        expr.innerText = expressao
+        if(btnclicado == "X"){
+          apagarUltimo()
+        }else if(btnclicado == "AC"){
+          apagartudo()
+        } else if(btnclicado == "="){
+          gerarresultado()
+        }
+      }
+
+      function apagartudo(){
+        expressao = ""
+        res.innerHTML = ""
+      }
+      function apagarUltimo(){
+          expressao = expressao.slice(0 , -1)
+      }
+      function gerarresultado(){
+        let reultado = eval(expressao)
+        res.innerHTML = reultado
+        ver = true
+        expressao = reultado
+      }
+      
+    </script>
+  </body>
+</html>

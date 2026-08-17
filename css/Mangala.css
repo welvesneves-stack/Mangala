@@ -7,8 +7,9 @@
 
 
         .img {
-            background-image: url(/imagens/Mulher\ à\ sombra\ de\ uma\ parede.png);
+            background-image: url(/Mangala/imagens/Mulher\ à\ sombra\ de\ uma\ parede.png);
             padding: 30px;
+            flex-flow: column;
             background-repeat: no-repeat;
             margin-top: 51px;
             background-position: center;
@@ -90,7 +91,7 @@
 
     .caixa2 {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
         display: flex;
@@ -573,6 +574,7 @@
         position: absolute; /* relativo ao documento */
         z-index: 9999;
         animation: subir 0.3s ease forwards;
+        
     }
 
     /* Container do modal (já existente) */
